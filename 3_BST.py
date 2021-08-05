@@ -30,17 +30,18 @@ class binary_search_tree:
             else:
                 self._insert(value, cur_node.right_child)
         else:
-            print("Value already in tree!")
+            print("Value already in tree!")   #when value is equal to cur_node.value
 
     def print_tree(self):
         if self.root != None:
             self._print_tree(self.root)
 
-    def _print_tree(self, cur_node):
+    def _print_tree(self, cur_node):   #IN order traversal
         if cur_node != None:
             self._print_tree(cur_node.left_child)
             print(str(cur_node.value))
             self._print_tree(cur_node.right_child)
+
 
     def height(self):
         if self.root != None:
@@ -173,3 +174,15 @@ class binary_search_tree:
         elif value > cur_node.value and cur_node.right_child != None:
             return self._search(value, cur_node.right_child)
         return False
+
+
+def fill_tree(tree, num_elements=10,max_ints=1000):
+    from random import randint
+    for _ in range(num_elements):
+        curr_elem=randint(0,max_ints)
+        tree.insert(curr_elem)
+    return tree
+
+tree=binary_search_tree()
+tree=fill_tree(tree)
+tree.print_tree()
